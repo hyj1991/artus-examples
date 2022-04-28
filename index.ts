@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import path from "path";
-import { ArtusApplication, Scanner } from "@artus/core";
+import { ArtusApplication, Scanner } from "@xprofiler/artus-core";
 
 export async function main() {
   const scanner = new Scanner({
