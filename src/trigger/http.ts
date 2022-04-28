@@ -1,6 +1,6 @@
 import { Stream } from 'stream';
 import { Context, Next } from '@artus/pipeline';
-import { Trigger, DefineTrigger } from '@xprofiler/artus-core';
+import { Trigger, DefineTrigger } from '@artus/core';
 
 @DefineTrigger()
 export default class HttpTrigger extends Trigger {

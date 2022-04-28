@@ -1,6 +1,6 @@
 import { Server } from 'http';
 import http from 'http';
-import { ArtusApplication, ApplicationLifecycle, ApplicationExtension, ApplicationHook, WithApplication } from '@xprofiler/artus-core';
+import { ArtusApplication, ApplicationLifecycle, ApplicationExtension, ApplicationHook, WithApplication } from '@artus/core';
 import { Input } from '@artus/pipeline';
 import { registerController } from './decorator';
 import HttpTrigger from './trigger/http';

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Context, Next } from '@artus/pipeline';
 import { Constructable } from '@artus/injection';
-import { HOOK_CONSTRUCTOR_PARAMS, HOOK_PARAMS_CONTEXT } from '@xprofiler/artus-core';
+import { HOOK_CONSTRUCTOR_PARAMS, HOOK_PARAMS_CONTEXT } from '@artus/core';
 import { Injectable, ScopeEnum } from '@artus/injection';
 import HttpTrigger from './trigger/http';
 
