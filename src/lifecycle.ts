@@ -1,11 +1,11 @@
 import { Server } from 'http';
 import http from 'http';
-import { ArtusApplication, ApplicationLifecycle, ApplicationExtension, ApplicationHook, WithApplication } from '@artus/core';
+import { ArtusApplication, ApplicationLifecycle, LifecycleHookUnit, LifecycleHook, WithApplication } from '@artus/core';
 import { Input } from '@artus/pipeline';
 import { registerController } from './decorator';
 import HttpTrigger from './trigger/http';
 
-@ApplicationExtension()
+@LifecycleHookUnit()
 export default class ApplicationHookExtension implements ApplicationLifecycle {
   private app: ArtusApplication;
   private server: Server | null;
@@ -15,7 +15,7 @@ export default class ApplicationHookExtension implements ApplicationLifecycle {
     this.server = null;
   }
 
-  @ApplicationHook()
+  @LifecycleHook()
   willReady() {
     const config = this.app.config ?? {};
     const port = config.port;
@@ -28,12 +28,12 @@ export default class ApplicationHookExtension implements ApplicationLifecycle {
       .listen(port);
   }
 
-  @ApplicationHook()
+  @LifecycleHook()
   async didLoad() {
     registerController(this.app.trigger as HttpTrigger);
   }
 
-  @ApplicationHook()
+  @LifecycleHook()
   beforeClose() {
     this.server?.close();
   }

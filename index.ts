@@ -6,6 +6,11 @@ import { mergePluginsConfig, getMergedPluginConfig, getPluginsConfig, eggApplica
 export async function main() {
   const scanner = new Scanner({
     needWriteFile: false,
+    loaderListGenerator: (defaultLoaderList: string[]) => {
+      const configIndex = defaultLoaderList.indexOf('config');
+      defaultLoaderList.splice(configIndex + 1, 0, 'egg-plugin');
+      return defaultLoaderList;
+    },
     excluded: ['dist']
   });
   const manifest = await scanner.scan(path.resolve(__dirname, './'));
@@ -32,6 +37,7 @@ export async function main() {
   container.set({ id: 'EGG_APPLICATION', value: eggApplication });
   await app.load(manifest.default);
 
+  // 测试使用 egg-redis 写入
   await (eggApplication as any).redis.set('test-key', 'redis init succeed');
 
   await app.run();
